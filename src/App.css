@@ -182,3 +182,7 @@
     border-right-color: var(--border);
   }
 }
+.rejestracja{
+  display: flex;
+  flex-direction: column;
+}
