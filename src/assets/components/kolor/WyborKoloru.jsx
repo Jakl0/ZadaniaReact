@@ -11,7 +11,7 @@ const WyborKoloru = () => {
             
             <div className={aktualnyKolor}/>
 
-            <p>{pokazac? aktualnyKolor : ''}</p>
+            <p>{pokazac && aktualnyKolor}</p>
 
             <button onClick={() => setKolor("czerwony")}>Czerwony</button>
             <button onClick={() => setKolor("zielony")}>Zielony</button>
