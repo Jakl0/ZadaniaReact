@@ -5,18 +5,27 @@ const FormularzLogowania = () => {
 
     const[input,setInput] = useState("");
     const[password,setPassword] = useState("");
-    const[blad,setBlad] = useState(0);
+    const[blad,setBlad] = useState({});
+    const [czyPoprawnie,setPoprawnie] = useState(false);
 
     function handleSubmit(e){
-
+        
         e.preventDefault();
-        setBlad(0);
+        const nowebledy = {};
 
         if(input.trim() === ""){
-            setBlad(blad+1);
+            nowebledy.login = "login nie może być pusty";
         }
-        if(password.length < 6 || password.trim() === 0){
-            setBlad(blad+2);
+        if(password.length < 6 || password.trim() === ""){
+            nowebledy.password = "hasło musi mieć conajmniej 6 znaków";
+        }
+        setBlad(nowebledy);
+
+        if(Object.keys(nowebledy).length === 0){
+            setPoprawnie(true);
+        }
+        else{
+            setPoprawnie(false);
         }
 
     }
@@ -29,16 +38,18 @@ const FormularzLogowania = () => {
                 <div className='loginInput'>
                     <p>login: </p>
                     <input type="text" value={input} onChange={e => setInput(e.target.value)} />
-                    <p>{(blad === 1 || blad === 3)? "login nie może być pusty": ""}</p>
+                    {blad.login && <p>{blad.login}</p>}
                 </div>
                 <div className='passwordInput'>
                     <p>hasło: </p>
                     <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-                    <p>{(blad === 2 || blad === 3)? "hasło musi mieć conajmniej 6 znaków": ""}</p>
+                    {blad.password && <p>{blad.password}</p>}
+                    
                 </div>
+                
                 <button type="submit">sfsadfasdfsadf</button>
             </form>
-            
+            {czyPoprawnie && <h3>Zalogowano pomyślnie</h3>}
             
         </>
     );
