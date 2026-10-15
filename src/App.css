@@ -193,3 +193,10 @@
   margin: 20px;
   
 }
+.zakup{
+  display:flex;
+  justify-content: center;
+  flex-direction: row;
+  row-gap: 20px;
+  align-items: baseline;
+}
